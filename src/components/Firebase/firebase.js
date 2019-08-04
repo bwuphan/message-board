@@ -35,12 +35,20 @@ class Firebase {
   doPasswordUpdate = password =>
     this.auth.currentUser.updatePassword(password);
 
-
+  doAddMessage = (message, uid) => {
+    const newMessage = {
+      text: message,
+      uid
+    };
+    this.db.ref('messages').push().set(newMessage);
+  }
   // *** User API ***
 
   user = uid => this.db.ref(`users/${uid}`);
 
   users = () => this.db.ref('users');
+
+  messages = () => this.db.ref('messages');
 }
 
 
