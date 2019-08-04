@@ -1,40 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { withFirebase } from '../Firebase';
-
+import { AuthUserContext, withAuthorization } from '../Session';
 import CreateMessage from '../CreateMessage';
+import Messages from '../Messages';
 
-class Board extends Component {
-  constructor(props) {
-    console.log('here');
-    super(props);
+const Board = () => (
+  <div>
+    <Messages />
+    <CreateMessage />
+  </div>
+)
 
-    this.state = {
-      messages: []
-    }
-  }
-
-  componentDidMount() {
-    // this.props.firebase.doAddMessage('hello world', 1);
-    this.props.firebase.messages().on('value', snapshot => {
-      const messagesObject = snapshot.val();
-
-      const messageList = Object.keys(messagesObject).map(key => ({
-        ...[messagesObject]
-      }));
-      console.log(messageList)
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h2>hello world</h2>
-        <CreateMessage />
-      </div>
-    )
-  }
-}
-
-
-export default withFirebase(Board);
+const condition = authUser => !!authUser;
+export default withAuthorization(condition)(Board);
