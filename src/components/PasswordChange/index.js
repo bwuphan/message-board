@@ -41,27 +41,47 @@ class PasswordChangeForm extends Component {
       passwordOne !== passwordTwo || passwordOne === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
-          name="passwordOne"
-          value={passwordOne}
-          onChange={this.onChange}
-          type="password"
-          placeholder="New Password"
-        />
-        <input
-          name="passwordTwo"
-          value={passwordTwo}
-          onChange={this.onChange}
-          type="password"
-          placeholder="Confirm New Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Reset My Password
-        </button>
-
-        {error && <p>{error.message}</p>}
-      </form>
+      <div className="card bg-light mb-3 mx-auto max-width-30">
+        <div className="card-header text-center">Change Password</div>
+        <div className="card-body">
+          <form onSubmit={this.onSubmit}>
+          <div className="form-group">
+            <label htmlFor="passwordOne">New Password</label>
+            <input
+              name="passwordOne"
+              id="passwordOne"
+              value={passwordOne}
+              onChange={this.onChange}
+              type="password"
+              placeholder="New Password"
+              className="form-control"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="passwordTwo">Confirm Password</label>
+            <input
+              name="passwordTwo"
+              id="passwordTwo"
+              value={passwordTwo}
+              onChange={this.onChange}
+              type="password"
+              placeholder="Confirm New Password"
+              className="form-control"
+            />
+          </div>
+          <div className="form-group text-center">
+            <button
+              className="btn btn-primary"
+              type="submit"
+              disabled={isInvalid}
+            >
+              Reset My Password
+            </button>
+          </div>
+            {error && <p>{error.message}</p>}
+          </form>
+        </div>
+      </div>
     );
   }
 }
