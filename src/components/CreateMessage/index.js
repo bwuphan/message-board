@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
 
-import { AuthUserContext, withAuthorization } from '../Session';
+import { AuthUserContext } from '../Session';
 
 class CreateMessage extends Component {
   constructor(props) {
@@ -36,16 +36,21 @@ class CreateMessage extends Component {
     return (
       <AuthUserContext.Consumer>
         {authUser => (
-          <form
-            id="create-message-form"
-            onSubmit={this.submitMessage}
-            className="d-flex justify-content-center py-2"
-          >
-            <div className="d-flex flex-column w-50">
-              <textarea rows="4" cols="50" onChange={this.handleMessageChange}></textarea>
+          <div>
+            <form
+              id="create-message-form"
+              onSubmit={this.submitMessage}
+              className="mx-auto d-flex flex-column"
+            >
+              <textarea
+                placeholder="Write something here..."
+                rows="4"
+                cols="50"
+                onChange={this.handleMessageChange}
+              ></textarea>
               <button type="submit" className="bn btn-primary">Submit</button>
-            </div>
-          </form>
+            </form>
+          </div>
         )}
       </AuthUserContext.Consumer>
     )
