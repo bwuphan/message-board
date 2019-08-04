@@ -36,11 +36,13 @@ class Firebase {
     this.auth.currentUser.updatePassword(password);
 
   doAddMessage = (message, uid) => {
+    const now = new Date().toISOString();
     const newMessage = {
       text: message,
+      createdOn: now,
       uid
     };
-    this.db.ref('messages').push().set(newMessage);
+    return this.db.ref('messages').push(newMessage);
   }
   // *** User API ***
 
