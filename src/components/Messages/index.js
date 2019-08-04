@@ -23,7 +23,7 @@ class Messages extends Component {
       const messagesObject = snapshot.val();
 
       const messages = Object.keys(messagesObject).map(key => messagesObject[key]).reverse();
-      this.setState({ messages })
+      this.setState({ messages, loading: false })
     });
 
     this.props.firebase.users().on('value', snapshot => {
@@ -42,25 +42,22 @@ class Messages extends Component {
   }
 
   render() {
-    if (this.state.loading === false) {
+    const { users, messages, loading } = this.state;
+    const showMessages = JSON.stringify(users) !== "{}" && messages.length > 0;
+    if (showMessages && loading === false) {
       return (
         <div className="pt-3">
           <ul className="list-unstyled">
             {this.state.messages.map((message, i) =>
               <li className="pb-3" key={i}>
-                <Message message={message} user={this.state.users[message.uid]}/>
+                <Message message={message} user={users[message.uid]}/>
               </li>
             )}
           </ul>
         </div>
       )
     } else {
-      return (
-        <div className="text-center">
-          <Loader color="primary" />;
-        </div>
-      )
-
+      return <div className="text-center"><Loader color="primary" /></div>
     }
   }
 }
