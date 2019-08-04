@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
+import Loader from '../Loader';
 
 class AdminPage extends Component {
   constructor(props) {
@@ -39,9 +40,9 @@ class AdminPage extends Component {
 
     return (
       <div>
-        <h1>Admin</h1>
+        <h1 className="text-center">Admin</h1>
 
-        {loading && <div>Loading ...</div>}
+        {loading && <div className="text-center"><Loader color="primary" /></div>}
 
         <UserList users={users} />
 
@@ -51,21 +52,27 @@ class AdminPage extends Component {
 }
 
 const UserList = ({ users }) => (
-  <ul>
-    {users.map(user => (
-      <li key={user.uid}>
-        <span>
-          <strong>ID:</strong> {user.uid}
-        </span>
-        <span>
-          <strong>E-Mail:</strong> {user.email}
-        </span>
-        <span>
-          <strong>Username:</strong> {user.username}
-        </span>
-      </li>
-    ))}
-  </ul>
+  <div className="container">
+    <h2 className="text-center card-header border">Users</h2>
+    <table className="table border">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Email</th>
+          <th scope="col">Username</th>
+        </tr>
+        </thead>
+        <tbody>
+          {users.map(user => (
+            <tr key={user.uid}>
+              <td>{user.uid}</td>
+              <td>{user.email}</td>
+              <td>{user.username}</td>
+            </tr>
+          ))}
+        </tbody>
+    </table>
+  </div>
 );
 
 export default withFirebase(AdminPage);
