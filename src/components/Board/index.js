@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
 
+import CreateMessage from '../CreateMessage';
+
 class Board extends Component {
   constructor(props) {
     console.log('here');
@@ -13,12 +15,23 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    console.log('here');
+    // this.props.firebase.doAddMessage('hello world', 1);
+    this.props.firebase.messages().on('value', snapshot => {
+      const messagesObject = snapshot.val();
+
+      const messageList = Object.keys(messagesObject).map(key => ({
+        ...[messagesObject]
+      }));
+      console.log(messageList)
+    });
   }
 
   render() {
     return (
-      <h2>hello world</h2>
+      <div>
+        <h2>hello world</h2>
+        <CreateMessage />
+      </div>
     )
   }
 }
