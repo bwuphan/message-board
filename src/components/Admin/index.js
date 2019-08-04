@@ -55,24 +55,26 @@ class AdminPage extends Component {
 const UserList = ({ users }) => (
   <div className="container">
     <h2 className="text-center card-header border">Users</h2>
-    <table className="table border">
-      <thead>
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Email</th>
-          <th scope="col">Username</th>
-        </tr>
-        </thead>
-        <tbody>
-          {users.map(user => (
-            <tr key={user.uid}>
-              <td>{user.uid}</td>
-              <td>{user.email}</td>
-              <td>{user.username}</td>
-            </tr>
-          ))}
-        </tbody>
-    </table>
+    <div className="table-responsive">
+      <table className="table table-bordered table-striped w-100">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>
+          </tr>
+          </thead>
+          <tbody>
+            {users.map(user => (
+              <tr key={user.uid}>
+                <td>{user.uid}</td>
+                <td>{user.email}</td>
+                <td>{user.username}</td>
+              </tr>
+            ))}
+          </tbody>
+      </table>
+    </div>
   </div>
 );
 
