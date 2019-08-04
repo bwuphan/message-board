@@ -44,10 +44,10 @@ class Messages extends Component {
   render() {
     if (this.state.loading === false) {
       return (
-        <div>
+        <div className="pt-3">
           <ul className="list-unstyled">
             {this.state.messages.map((message, i) =>
-              <li key={i}>
+              <li className="pb-3" key={i}>
                 <Message message={message} user={this.state.users[message.uid]}/>
               </li>
             )}
@@ -55,13 +55,14 @@ class Messages extends Component {
         </div>
       )
     } else {
-      return <Loader />;
+      return (
+        <div className="text-center">
+          <Loader color="primary" />;
+        </div>
+      )
+
     }
   }
 }
 
-
 export default withFirebase(Messages);
-
-
-// <span key={i}>{message.text}</span>
