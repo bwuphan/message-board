@@ -23,10 +23,9 @@ class AdminPage extends Component {
         uid: key
       }));
 
-      console.log(usersList);
       this.setState({
         users: usersList,
-        loading: false,
+        loading: false
       });
     });
   }
