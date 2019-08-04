@@ -44,11 +44,11 @@ class Messages extends Component {
   render() {
     const { users, messages, loading } = this.state;
     const showMessages = JSON.stringify(users) !== "{}" && messages.length > 0;
-    if (showMessages && loading === false) {
+    if (showMessages && !loading) {
       return (
         <div className="pt-3">
           <ul className="list-unstyled">
-            {this.state.messages.map((message, i) =>
+            {messages.map((message, i) =>
               <li className="pb-3" key={i}>
                 <Message message={message} user={users[message.uid]}/>
               </li>
@@ -56,6 +56,8 @@ class Messages extends Component {
           </ul>
         </div>
       )
+    } else if (!showMessages) {
+      return <div>No messages here...</div>
     } else {
       return <div className="text-center"><Loader color="primary" /></div>
     }
