@@ -73,64 +73,68 @@ class SignUpFormBase extends Component {
 
     return (
       <div className="container">
-        <form onSubmit={this.onSubmit}>
-          <div className="form-group">
-            <label for="username">User Name</label>
-            <input
-              name="username"
-              id="username"
-              className="form-control"
-              value={username}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Full Name"
-            />
+        <div class="card bg-light mb-3 mx-auto" style={{'max-width': '30rem'}}>
+          <div class="card-body">
+            <form onSubmit={this.onSubmit}>
+              <div className="form-group">
+                <label for="username">User Name</label>
+                <input
+                  name="username"
+                  id="username"
+                  className="form-control"
+                  value={username}
+                  onChange={this.onChange}
+                  type="text"
+                  placeholder="Full Name"
+                />
+              </div>
+              <div className="form-group">
+                <label for="email">Email Address</label>
+                <input
+                  name="email"
+                  id="email"
+                  className="form-control"
+                  value={email}
+                  onChange={this.onChange}
+                  type="text"
+                  placeholder="Email Address"
+                />
+              </div>
+              <div className="form-group">
+                <label for="passwordOne">Password</label>
+                <input
+                  name="passwordOne"
+                  id="passwordOne"
+                  className="form-control"
+                  value={passwordOne}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Password"
+                />
+              </div>
+              <div className="form-group">
+                <label for="passwordTwo">Password</label>
+                <input
+                  name="passwordTwo"
+                  id="passwordTwo"
+                  className="form-control"
+                  value={passwordTwo}
+                  onChange={this.onChange}
+                  type="password"
+                  placeholder="Confirm Password"
+                />
+              </div>
+              <div className="form-group text-center">
+                <button
+                  className="btn btn-primary"
+                  type="submit"
+                  disabled={isInvalid}
+                >Sign Up</button>
+              </div>
+              {error && <p>{error.message}</p>}
+            </form>
           </div>
-          <div className="form-group">
-            <label for="email">Email Address</label>
-            <input
-              name="email"
-              id="email"
-              className="form-control"
-              value={email}
-              onChange={this.onChange}
-              type="text"
-              placeholder="Email Address"
-            />
-          </div>
-          <div className="form-group">
-            <label for="passwordOne">Password</label>
-            <input
-              name="passwordOne"
-              id="passwordOne"
-              className="form-control"
-              value={passwordOne}
-              onChange={this.onChange}
-              type="password"
-              placeholder="Password"
-            />
-          </div>
-          <div className="form-group">
-            <label for="passwordTwo">Password</label>
-            <input
-              name="passwordTwo"
-              id="passwordTwo"
-              className="form-control"
-              value={passwordTwo}
-              onChange={this.onChange}
-              type="password"
-              placeholder="Confirm Password"
-            />
-          </div>
-          <div className="form-group text-center">
-            <button
-              className="btn btn-primary"
-              type="submit"
-              disabled={isInvalid}
-            >Sign Up</button>
-          </div>
-          {error && <p>{error.message}</p>}
-        </form>
+        </div>
       </div>
     );
   }
