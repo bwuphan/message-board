@@ -9,7 +9,7 @@ import $ from 'jquery';
 
 const Navigation = () => (
 <nav className="navbar navbar-expand-lg navbar-light bg-light">
-  <Link to={ROUTES.LANDING}>
+  <Link to={ROUTES.BOARD}>
     <img width="80"
       src="https://logos-download.com/wp-content/uploads/2016/04/Sacramento_Kings_logo_transparent_bg.png" />
   </Link>
@@ -29,22 +29,12 @@ const NavigationAuth = () => (
     <ul class="navbar-nav mr-auto">
       <li className="nav-item">
         <span className="nav-link" href="#">
-          <Link className="text-decoration-none" to={ROUTES.HOME}>Home</Link>
-        </span>
-      </li>
-      <li className="nav-item">
-        <span className="nav-link" href="#">
           <Link className="text-decoration-none" to={ROUTES.ACCOUNT}>Account</Link>
         </span>
       </li>
       <li className="nav-item">
         <span className="nav-link" href="#">
           <Link className="text-decoration-none" to={ROUTES.ADMIN}>Admin</Link>
-        </span>
-      </li>
-      <li className="nav-item">
-        <span className="nav-link" href="#">
-          <Link className="text-decoration-none" to={ROUTES.BOARD}>Board</Link>
         </span>
       </li>
     </ul>

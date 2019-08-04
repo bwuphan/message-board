@@ -38,9 +38,13 @@ class CreateMessage extends Component {
         {authUser => (
           <form
             id="create-message-form"
-            className="d-flex" onSubmit={this.submitMessage}>
-            <textarea rows="4" cols="50" onChange={this.handleMessageChange}></textarea>
-            <button type="submit">Submit</button>
+            onSubmit={this.submitMessage}
+            className="d-flex justify-content-center py-2"
+          >
+            <div className="d-flex flex-column w-50">
+              <textarea rows="4" cols="50" onChange={this.handleMessageChange}></textarea>
+              <button type="submit" className="bn btn-primary">Submit</button>
+            </div>
           </form>
         )}
       </AuthUserContext.Consumer>
