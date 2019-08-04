@@ -9,29 +9,38 @@ class CreateMessage extends Component {
     super(props);
 
     this.state = {
-      message: ''
+      message: '',
+      uid: null
     }
   }
 
   componentDidMount() {
-    // this.props.firebase.doAddMessage('hello world', 1);
+    if (this.props.authUser.uid) {
+      this.setState({ uid: this.props.authUser.uid});
+    }
   }
 
-  handleMessageChange(event) {
-    console.log(event.target.value);
-    // this.setState({ message: ''})
-  }
-  submitMessage(message, uid) {
+  handleMessageChange = (event) => this.setState({ message: event.target.value });
 
+  submitMessage = (event) => {
+    this.props.firebase.doAddMessage(this.state.message, this.state.uid)
+      .then(() => {
+        this.setState({ message: null });
+        document.getElementById('create-message-form').reset();
+      });
+
+    event.preventDefault();
   }
 
   render() {
     return (
       <AuthUserContext.Consumer>
         {authUser => (
-          <form onSubmit={this.submitMessage}>
+          <form
+            id="create-message-form"
+            className="d-flex" onSubmit={this.submitMessage}>
             <textarea rows="4" cols="50" onChange={this.handleMessageChange}></textarea>
-            <button type="submit" value="Submit" />
+            <button type="submit">Submit</button>
           </form>
         )}
       </AuthUserContext.Consumer>
@@ -39,5 +48,13 @@ class CreateMessage extends Component {
   }
 }
 
+const createMessage = props =>  (
+  <AuthUserContext.Consumer>
+    {authUser => (
+      authUser ? <CreateMessage {...props} authUser={authUser} /> : <div></div>
+    )}
+  </AuthUserContext.Consumer>
+)
 
-export default withFirebase(CreateMessage);
+
+export default withFirebase(createMessage);
