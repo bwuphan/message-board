@@ -9,6 +9,6 @@ const Board = () => (
     <CreateMessage />
     <Messages />
   </div>
-)
+);
 
 export default Board;

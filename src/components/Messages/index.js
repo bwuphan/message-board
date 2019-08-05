@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
-
 import Message from '../Message';
 import Loader from '../Loader';
 
@@ -55,7 +54,7 @@ class Messages extends Component {
             )}
           </ul>
         </div>
-      )
+      );
     } else if (!showMessages) {
       return <div>No messages here...</div>
     } else {

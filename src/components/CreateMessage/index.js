@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { withFirebase } from '../Firebase';
-
 import { AuthUserContext } from '../Session';
 
 class CreateMessage extends Component {
@@ -53,9 +52,9 @@ class CreateMessage extends Component {
           </div>
         )}
       </AuthUserContext.Consumer>
-    )
-  }
-}
+    );
+  };
+};
 
 const createMessage = props =>  (
   <AuthUserContext.Consumer>
@@ -63,7 +62,7 @@ const createMessage = props =>  (
       authUser ? <CreateMessage {...props} authUser={authUser} /> : <div></div>
     )}
   </AuthUserContext.Consumer>
-)
+);
 
 
 export default withFirebase(createMessage);
