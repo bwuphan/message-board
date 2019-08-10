@@ -42,7 +42,7 @@ class Messages extends Component {
 
   render() {
     const { users, messages, loading } = this.state;
-    const showMessages = JSON.stringify(users) !== "{}" && messages.length > 0;
+    const showMessages = Object.keys(users).length > 0 && messages.length > 0;
     if (showMessages && !loading) {
       return (
         <div className="pt-3">
